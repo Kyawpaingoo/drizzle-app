@@ -9,6 +9,7 @@
     "db:seed": "bun src/db/seed.ts"
   },
   "dependencies": {
+    "@better-auth/infra": "^0.3.7",
     "@neondatabase/serverless": "^1.1.0",
     "better-auth": "^1.6.25",
     "dotenv": "^17.4.2",
