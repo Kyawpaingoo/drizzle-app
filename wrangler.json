@@ -1,8 +1,5 @@
 {
   "name": "drizzle-app",
   "main": "dist/index.js",
-  "build": {
-    "command": "bun run build"
-  },
   "compatibility_date": "2024-09-23"
 }
