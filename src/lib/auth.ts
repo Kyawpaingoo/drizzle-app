@@ -12,4 +12,7 @@ export const auth = betterAuth({
       apiKey: process.env.BETTER_AUTH_API_KEY,
     }),
   ],
+  emailAndPassword: {
+    enabled: true,
+  }
 });
