@@ -3,6 +3,7 @@ import postRoutes from './router/post.route'
 import { logger } from 'hono/logger'
 import { auth } from './lib/auth'
 import authRoutes from './router/auth.route'
+import { sessionMiddleware } from './middleware/auth.middleware'
 
 const app = new Hono()
 
@@ -10,13 +11,13 @@ app.use('*', logger())
 
 app.get('/', (c) => c.json('API is running'))
 
+app.use('*', sessionMiddleware);
+
 app.route('/api/posts', postRoutes)
 app.route('/api/auth', authRoutes)
 
 app.on(['POST', 'GET'], '/api/auth/*', (c) => auth.handler(c.req.raw))
 
-// Bun.serve is only used for local `bun run` dev; Cloudflare Workers
-// invokes the default-exported fetch handler directly instead.
 if (typeof Bun !== 'undefined') {
   const PORT = process.env.PORT || 3000
   Bun.serve({
